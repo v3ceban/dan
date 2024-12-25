@@ -77,6 +77,7 @@ class DAN_I:
         pre_y = []
         a2 = log_std_denorm_dataset(self.mean, self.std, predict_y0, pre_y)
 
+        self.logger.info(f"Model output after denormalization: {a2}")  # debug statement
         return a2
 
     def inference_test(self, x_test, y_input1, y_input2):
@@ -101,6 +102,7 @@ class DAN_I:
             y_predict = [out3[0][i].item() for i in range(len(out3[0]))]
             y_predict = np.array(y_predict).reshape(1, -1)
 
+        print(f"Model output before denormalization: {y_predict}")
         return y_predict
 
     def model_load(self, zipf):
